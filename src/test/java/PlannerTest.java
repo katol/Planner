@@ -32,13 +32,13 @@ public class PlannerTest {
         assertTrue(areEqual);
     }
 
-    @Test(timeout=500000)
+    @Test(timeout = 500000)
     public void planTasks_WorksFast() {
         new Planner().planTasks("data/data2.txt");
     }
 
-//    @Test(timeout=60000)
-//    public void planTasks_WorksVeryFast_WithHeapLimit() {
-//        new Planner().planTasks("data/data2.txt");
-//    }
+    @Test(timeout = 60000)
+    public void planTasks_WorksVeryFast_WithHeapLimit() {
+        new Planner().planTasks("data/data2.txt");
+    }
 }

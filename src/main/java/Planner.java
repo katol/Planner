@@ -32,18 +32,19 @@ public class Planner {
         int actualStepNumber = 0;
         while (tasksCount != checkedTasksCount) {
             List<Integer> actualList = new LinkedList<>();
-            for (Map.Entry<Integer, Task> entry : tasks.entrySet()) {
+            for (Iterator<Map.Entry<Integer, Task>> iterator = tasks.entrySet().iterator(); iterator.hasNext();) {
+                Map.Entry<Integer, Task> entry = iterator.next();
                 Integer key = entry.getKey();
                 Task value = entry.getValue();
                 if (value.parentsCount == 0 && value.stepNumber < actualStepNumber) {
-                    value.parentsCount = -1;
                     actualList.add(key);
                     checkedTasksCount++;
                     for (Integer childNumber : value.children) {
                         Task task = tasks.get(childNumber);
-                        task.parentsCount -=1;
+                        task.parentsCount -= 1;
                         task.stepNumber = actualStepNumber;
                     }
+                    iterator.remove();
                 }
             }
             result.add(actualList);
