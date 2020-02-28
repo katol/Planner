@@ -7,8 +7,15 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Тестирует основной класс приложения
+ * @author Анатолий Берелехис
+ */
 public class PlannerTest {
 
+    /**
+     * Проверяет, что planTask возвращает правильный результат
+     */
     @Test
     public void planTasks_ReturnsCorrectList() {
         List<List<Integer>> expected = new LinkedList<>();
@@ -32,11 +39,19 @@ public class PlannerTest {
         assertTrue(areEqual);
     }
 
+    /**
+     * Проверяет, что planTask возвращает результат за разумное время на большом объеме данных
+     */
     @Test(timeout = 500000)
     public void planTasks_WorksFast() {
         new Planner().planTasks("data/data2.txt");
     }
 
+    /**
+     * Проверяет, что planTask возвращает результат за одну минуту на большом объеме данных
+     *      с ограничением объема кучи 1 гигабайт
+     * Ограничение объема кучи для этого теста выставлено через Intellij Idea
+     */
     @Test(timeout = 60000)
     public void planTasks_WorksVeryFast_WithHeapLimit() {
         new Planner().planTasks("data/data2.txt");
