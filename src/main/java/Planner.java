@@ -36,12 +36,12 @@ public class Planner {
      */
     public List<List<Integer>> planTasks(String filename) {
         readFileToTasks(filename);
-        List<List<Integer>> result = new LinkedList<>();
+        List<List<Integer>> result = new ArrayList<>();
         int tasksCount = tasks.size();
         int checkedTasksCount = 0;
         int actualStepNumber = 0;
         while (tasksCount != checkedTasksCount) {
-            List<Integer> actualList = new LinkedList<>();
+            List<Integer> actualList = new ArrayList<>();
             for (Iterator<Map.Entry<Integer, Task>> iterator = tasks.entrySet().iterator(); iterator.hasNext();) {
                 Map.Entry<Integer, Task> entry = iterator.next();
                 Integer key = entry.getKey();
@@ -100,7 +100,7 @@ public class Planner {
      */
     static class Task {
         int parentsCount;
-        List<Integer> children = new LinkedList<>();
+        List<Integer> children = new ArrayList<>();
         int stepNumber = -1;
 
         Task() {
